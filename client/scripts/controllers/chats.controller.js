@@ -1,10 +1,13 @@
 import Moment from 'moment';
 import { Controller } from 'angular-ecmascript/module-helpers';
+import { Chats } from '../../../lib/collections';
 
 export default class ChatsCtrl extends Controller {
   constructor() {
     super(...arguments);
 
+
+    /*
     this.data = [
       {
         _id: 0,
@@ -52,9 +55,19 @@ export default class ChatsCtrl extends Controller {
         }
       }
     ];
+
+    */
+
+    this.helpers({
+      data() {
+        return Chats.find();
+      }
+    });
+
   }
 
   remove(chat) {
-    this.data.splice(this.data.indexOf(chat), 1);
+    //this.data.splice(this.data.indexOf(chat), 1);
+    this.data.remove(chat);
   }
 }
